@@ -106,12 +106,12 @@ func UserReposts(user_id uint64, limit uint64, offset uint64) (RepostReponse, er
 }
 
 func OEmbed(url string) (OEmbedResponse, error) {
-	return OEmbedWithOptions(url, "CCC", "json")
+	return OEmbedWithOptions(url, "CCC", "json", "166")
 }
 
-func OEmbedWithOptions(stream_url string, color string, format string) (OEmbedResponse, error) {
+func OEmbedWithOptions(stream_url string, color string, format string, maxheight string) (OEmbedResponse, error) {
 	var response OEmbedResponse
-	url := fmt.Sprintf("%s?iframe=true&show_comments=false&color=%s&format=%s&url=%s", SC_OEMBED_URL, color, format, stream_url)
+	url := fmt.Sprintf("%s?iframe=true&show_comments=false&color=%s&format=%s&url=%s&maxheight=%s", SC_OEMBED_URL, color, format, stream_url, maxheight)
 	headers := make(map[string]string)
 	headers["User-Agent"] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11"
 	hr := httprequest.NewWithDefaults()
