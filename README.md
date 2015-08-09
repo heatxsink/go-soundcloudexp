@@ -21,13 +21,13 @@ import (
 )
 
 func main() {
-	response, err := soundcloudexp.UserReposts(20804924, 30, 0)
+	user_id := uint64(20804924)
+	limit := uint64(10)
+	offset := uint64(0)
+	response, _ := soundcloudexp.UserReposts(user_id, limit, offset)
 	for _, item := range response.Collection {
 		if item.Type == "track-repost" {
-			oembed, err := soundcloudexp.OEmbed(item.Track.Uri)
-			if err != nil {
-				fmt.Println(err)
-			}
+			oembed, _ := soundcloudexp.OEmbed(item.Track.Uri)
 			fmt.Println(oembed.Html)
 		}
 	}
